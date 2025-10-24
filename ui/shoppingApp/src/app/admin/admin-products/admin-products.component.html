@@ -1,0 +1,68 @@
+<div *ngIf="notificationMessage" class="top-notification">
+    {{ notificationMessage }}
+</div>
+
+<div class="container mt-4">
+
+    <div *ngIf="showForm && editingProduct" class="mt-4">
+        <app-admin-product-form [isEdit]="isEditMode" [productData]="editingProduct" (save)="saveProduct($event)"
+            (cancel)="cancelForm()">
+        </app-admin-product-form>
+    </div>
+
+    <div *ngIf="!showForm" class="mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold text-primary">📦 Product Management</h3>
+            <button class="btn btn-success" (click)="addProduct()">
+                <i class="bi bi-plus-circle me-1"></i> Add Product
+            </button>
+        </div>
+
+        <div class="table-responsive shadow-sm">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Description</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products" [ngClass]="{
+              'out-of-stock-row': product.availableQuantity === 0,
+              'low-stock-row': product.availableQuantity > 0 && product.availableQuantity <= 5
+            }" class="align-middle">
+                        <td>
+                            <img [src]="product.imageUrl" alt="Product Image" class="rounded shadow-sm"
+                                style="width: 60px; height: 60px; object-fit: contain;" />
+                        </td>
+                        <td>{{ product.title }}</td>
+                        <td>₹{{ product.price }}</td>
+                        <td>
+                            <span [ngClass]="{
+                  'text-success fw-bold': product.availableQuantity > 5,
+                  'text-warning fw-bold': product.availableQuantity > 0 && product.availableQuantity <= 5,
+                  'text-danger fw-bold': product.availableQuantity === 0
+              }">{{ product.availableQuantity }}</span>
+                        </td>
+                        <td>{{ product.description }}</td>
+                        <td class="text-center">
+                            <button class="btn btn-outline-primary btn-sm me-2" (click)="editProduct(product)">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteProduct(product.productId!)">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="products.length === 0">
+                        <td colspan="7" class="text-center text-muted py-4">No products found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

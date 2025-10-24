@@ -1,0 +1,33 @@
+.signup-wrapper {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    font-family: 'Poppins', sans-serif;
+}
+
+.signup-card {
+    width: 400px;
+    background-color: #fff;
+    border: none;
+    padding: 2rem;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+}
+
+.form-control {
+    border-radius: 50px;
+    padding: 0.8rem 1.2rem;
+}
