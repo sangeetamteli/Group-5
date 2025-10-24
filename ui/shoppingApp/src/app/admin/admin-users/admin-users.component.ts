@@ -40,31 +40,5 @@ export class AdminUsersComponent implements OnInit {
       error: (err) => console.error('Update failed', err)
     });
   }
-  /*
-    confirmDelete(userId?: number) {
-      if (!userId) return;
-      this.userToDelete = userId;
-      this.showConfirmModal = true;
-    }
-  
-    deleteUserConfirmed() {
-      if (!this.userToDelete) return;
-      this.userService.deleteUser(this.userToDelete).subscribe({
-        next: () => {
-          this.loadUsers();
-          this.showConfirmModal = false;
-          this.userToDelete = null;
-        },
-        error: (err) => {
-          console.error('Delete failed', err);
-          this.showConfirmModal = false;
-        }
-      });
-    }
-  
-    cancelDelete() {
-      this.showConfirmModal = false;
-      this.userToDelete = null;
-    }*/
 }
 
